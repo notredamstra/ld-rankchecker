@@ -15,7 +15,7 @@ var (
 
 func main(){
 	httpClient = &http.Client{}
-	baseURL = GetEnvVariable("LD_API_BASE_URL")
+	baseURL = "https://api.ldjam.com"
 
 	r := gin.New()
 	r.Use(gin.Logger())
