@@ -23,7 +23,7 @@ func main(){
 	r.LoadHTMLGlob(getEnv("TEMPLATE_PATTERN", "./public/templates/*.html"))
 	r.GET("/", showPage)
 	r.POST("/", getRank)
-	r.Static("/assets", "./public")
+	r.Static("/assets", getEnv("STATIC_PATTERN", "./public"))
 	r.Run(":"+getEnv("PORT", "8080"))
 }
 
