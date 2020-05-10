@@ -7,12 +7,13 @@ RUN curl -sL https://deb.nodesource.com/setup_13.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 RUN npm install webpack -g
 
+COPY . /app
+WORKDIR /app
 RUN go build -o /bin/ldjam-rank .
 RUN npm install
 RUN npm run build
 
-COPY . /app
-WORKDIR /app
+
 
 # Heroku setup
 FROM heroku/heroku:18
