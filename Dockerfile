@@ -9,8 +9,10 @@ RUN npm install webpack -g
 
 COPY . /app
 WORKDIR /app
-RUN go build -o /ldjam-rank .
+RUN go build -o /bin/ldjam-rank .
 
+# Heroku setup
 FROM heroku/heroku:18
-COPY --from=build /ldjam-rank /ldjam-rank
+COPY --from=build /bin/ldjam-rank /bin/ldjam-rank
+RUN chmod a+x /bin/ldjam-rank
 CMD ["/bin/ldjam-rank"]
