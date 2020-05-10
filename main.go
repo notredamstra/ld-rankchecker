@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"net/url"
+	"os"
 	"time"
 )
 
@@ -23,7 +24,7 @@ func main(){
 	r.GET("/", showPage)
 	r.POST("/", getRank)
 	r.Static("/assets", "../web/public")
-	r.Run()
+	r.Run(os.Getenv("PORT"))
 }
 
 func showPage(c *gin.Context){
