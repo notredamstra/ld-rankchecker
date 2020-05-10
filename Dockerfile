@@ -17,6 +17,6 @@ RUN npm run build
 # Heroku setup
 FROM heroku/heroku:18
 COPY --from=build /bin/ldjam-rank /app/ldjam-rank
-COPY --from=build /app/web/public /app/public
+COPY --from=build /app/public /app/public
 RUN chmod a+x /app/ldjam-rank
 CMD ["/app/ldjam-rank"]
