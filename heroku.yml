@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: /bin/ldjam-rank
+  web: /app/ldjam-rank
