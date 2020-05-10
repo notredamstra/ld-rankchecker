@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ludum Dare - Game rank checker</title>
+    <script type="application/javascript" src="/assets/app.bundle.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Ludum Dare Rank Finder</h1>
+            <h5>Get the rank of your Ludum Dare entry based on grades</h5>
+
+            <form action="" method="post">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="url">URL of your Ludum Dare game page</label>
+                            <input type="text" class="form-control" placeholder="Paste the URL here" name="url" id="url" value="{{.input}}">
+                            <small class="form-text text-muted">
+                                The URL should look similar to the following: <i>https://ldjam.com/events/ludum-dare/#event/#name</i>
+                            </small>
+                            {{if .message}}
+                            <div class="invalid-feedback" style="display: block">
+                                {{.message}}
+                            </div>
+                            {{end}}
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Get rank</button>
+            </form>
+        </div>
+
+        <div class="col-md-4">
+            {{if and .game.Id .event.Id }}
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{.game.Cover}}" alt="Cover image of {{.game.Name}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{.game.Name}} <span class="badge badge-success"> #{{.game.Rank}}</span></h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {{if (eq .game.Type "Jam")}}
+                        <li class="list-group-item" style="border-top-width: 1px">Total entries in Jam: {{ .event.Jam}} </li>
+                        {{else if (eq .game.Type "Compo")}}
+                        <li class="list-group-item" style="border-top-width: 1px">Total entries in Compo: {{ .event.Compo}} </li>
+                        {{end}}
+                        <li class="list-group-item">Grade: {{ .game.Grade   }} </li>
+                    </ul>
+                </div>
+            {{end}}
+        </div>
+    </div>
+
+
+</div>
+
+
+
+</body>
+</html>

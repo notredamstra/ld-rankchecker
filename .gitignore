@@ -1,0 +1,24 @@
+# Editor files
+.idea
+
+# Binaries, plugins, libs
+*.dll
+*.dylib
+*.exe
+*.exe~
+*.so
+
+# Testing
+*.test
+*.tmp
+
+# Assets
+assets/models/*
+assets/textures/*
+
+# Private
+.env
+
+# Build
+web/public
+web/src/node_modules
