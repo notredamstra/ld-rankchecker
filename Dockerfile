@@ -10,6 +10,7 @@ RUN npm install webpack -g
 COPY . /app
 WORKDIR /app
 RUN go build -o /bin/ldjam-rank .
+WORKDIR /app/web/src
 RUN npm install
 RUN npm run build
 
