@@ -24,7 +24,7 @@ func main(){
 	r.GET("/", showPage)
 	r.POST("/", getRank)
 	r.Static("/assets", "./public")
-	r.Run(getEnv("PORT", ":8080"))
+	r.Run(":"+getEnv("PORT", "8080"))
 }
 
 func showPage(c *gin.Context){
