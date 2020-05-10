@@ -20,7 +20,7 @@ func main(){
 	r := gin.New()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
-	r.LoadHTMLGlob("public/templates/*.html")
+	r.LoadHTMLGlob("/app/public/templates/*.html")
 	r.GET("/", showPage)
 	r.POST("/", getRank)
 	r.Static("/assets", "./public")
