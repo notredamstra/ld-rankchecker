@@ -1,4 +1,4 @@
-package main
+package ldjam_rank
 
 import (
 	"log"
