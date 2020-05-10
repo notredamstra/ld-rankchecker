@@ -1,4 +1,4 @@
-package ldjam_rank
+package main
 
 import (
 	"github.com/gin-gonic/gin"
