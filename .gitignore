@@ -20,5 +20,5 @@ assets/textures/*
 .env
 
 # Build
-web/public
+public
 web/src/node_modules

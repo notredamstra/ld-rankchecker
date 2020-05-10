@@ -14,10 +14,9 @@ WORKDIR /app/web/src
 RUN npm install
 RUN npm run build
 
-
-
 # Heroku setup
 FROM heroku/heroku:18
 COPY --from=build /bin/ldjam-rank /bin/ldjam-rank
+COPY --from=build /app/public /app/public
 RUN chmod a+x /bin/ldjam-rank
 CMD ["/bin/ldjam-rank"]

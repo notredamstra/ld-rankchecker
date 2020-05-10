@@ -20,11 +20,11 @@ func main(){
 	r := gin.New()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
-	r.LoadHTMLGlob("../web/src/templates/*.html")
+	r.LoadHTMLGlob("./public/templates/*.html")
 	r.GET("/", showPage)
 	r.POST("/", getRank)
-	r.Static("/assets", "../web/public")
-	r.Run(os.Getenv("PORT"))
+	r.Static("/assets", "./public")
+	r.Run(getEnv("PORT", ":8080"))
 }
 
 func showPage(c *gin.Context){
@@ -56,4 +56,12 @@ func getRank(c *gin.Context){
 		"message": message,
 	})
 
+}
+
+func getEnv(key, defaultValue string) string {
+	value := os.Getenv(key)
+	if len(value) == 0 {
+		return defaultValue
+	}
+	return value
 }

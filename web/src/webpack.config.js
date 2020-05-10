@@ -1,10 +1,11 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     mode: 'production',
     entry: './js/app.js',
     output: {
-        path: path.resolve(__dirname, '../public'),
+        path: path.resolve(__dirname, '../../public/js'),
         filename: 'app.bundle.js'
     },
     module: {
@@ -21,5 +22,12 @@ module.exports = {
                 ],
             },
         ],
-    }
+    },
+    plugins: [
+        new CopyPlugin(
+            [
+                { from: path.resolve(__dirname, './templates'), to: path.resolve(__dirname, '../../public/templates') },
+            ]
+        ),
+    ],
 };
