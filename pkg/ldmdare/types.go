@@ -1,24 +1,39 @@
-package main
+package ldmdare
 
-import "time"
+import (
+	"net/http"
+	"net/url"
+	"time"
+)
+
+type LudumApi interface {
+	GetGameRank(game *LDGame) (int, error)
+	GetEventStatsFromGame(game *LDGame) (*LDEvent, error)
+	GetGameFromURL(userUrl *url.URL) (*LDGame, error)
+}
+
+type Client struct {
+	BaseURL    string
+	httpClient *http.Client
+}
 
 type LDNodes struct {
 	Nodes []LDNode `json:"node"`
 }
 
 type LDNode struct {
-	Id int `json:"id"`
-	Type string `json:"type"`
-	Subtype string `json:"subtype"`
-	Subsubtype string `json:"subsubtype"`
-	Name string `json:"name"`
+	Id          int    `json:"id"`
+	Type        string `json:"type"`
+	Subtype     string `json:"subtype"`
+	Subsubtype  string `json:"subsubtype"`
+	Name        string `json:"name"`
 	Description string `json:"body"`
-	Magic struct {
-		Grade float64 `json:"grade"`
-		Cool float64 `json:"cool"`
+	Magic       struct {
+		Grade    float64 `json:"grade"`
+		Cool     float64 `json:"cool"`
 		Feedback float64 `json:"feedback"`
-		Smart float64 `json:"smart"`
-		Given float64 `json:"given"`
+		Smart    float64 `json:"smart"`
+		Given    float64 `json:"given"`
 	}
 	Meta struct {
 		Cover string `json:"cover"`
@@ -57,14 +72,14 @@ type LDStats struct {
 }
 
 type LDGame struct {
-	Id int `json:"id"`
-	Name string `json:"name"`
-	Description string `json:"description"`
-	Grade float64 `json:"grade"`
-	Cover string `json:"cover"`
-	EventId int `json:"event_id"`
-	Type string `json:"type"`
-	Rank int `json:"rank"`
+	Id          int     `json:"id"`
+	Name        string  `json:"name"`
+	Description string  `json:"description"`
+	Grade       float64 `json:"grade"`
+	Cover       string  `json:"cover"`
+	EventId     int     `json:"event_id"`
+	Type        string  `json:"type"`
+	Rank        int     `json:"rank"`
 }
 
 type LDGameFeedPage struct {
@@ -80,24 +95,24 @@ type LDGameFeedPage struct {
 	Feed        []struct {
 		ID       int       `json:"id"`
 		Modified time.Time `json:"modified"`
-		Score    float64       `json:"score"`
+		Score    float64   `json:"score"`
 	} `json:"feed"`
 }
 
 type LDEvent struct {
-	Id int `json:"id"`
-	Type string `json:"type"`
-	Signups     int       `json:"signups"`
-	Authors     int       `json:"authors"`
-	Unpublished int       `json:"unpublished"`
-	Game        int       `json:"game"`
-	Craft       int       `json:"craft"`
-	Tool        int       `json:"tool"`
-	Demo        int       `json:"demo"`
-	Jam         int       `json:"jam"`
-	Compo       int       `json:"compo"`
-	Warmup      int       `json:"warmup"`
-	Late        int       `json:"late"`
-	Release     int       `json:"release"`
-	Unfinished  int       `json:"unfinished"`
+	Id          int    `json:"id"`
+	Type        string `json:"type"`
+	Signups     int    `json:"signups"`
+	Authors     int    `json:"authors"`
+	Unpublished int    `json:"unpublished"`
+	Game        int    `json:"game"`
+	Craft       int    `json:"craft"`
+	Tool        int    `json:"tool"`
+	Demo        int    `json:"demo"`
+	Jam         int    `json:"jam"`
+	Compo       int    `json:"compo"`
+	Warmup      int    `json:"warmup"`
+	Late        int    `json:"late"`
+	Release     int    `json:"release"`
+	Unfinished  int    `json:"unfinished"`
 }
