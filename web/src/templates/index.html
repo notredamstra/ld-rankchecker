@@ -9,14 +9,14 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-lg-8 col-sm-12">
             <h1>Ludum Dare Exposure Comparison</h1>
             <h5>Find out your game's position based on the number of reviews</h5>
 
             <form action="" method="post">
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-lg-8 col-sm-12">
                             <label for="url">URL of your Ludum Dare game page</label>
                             <input type="text" class="form-control" placeholder="Paste the URL here" name="url" id="url" value="{{.input}}">
                             <small class="form-text text-muted">
@@ -34,7 +34,7 @@
             </form>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-lg-4 col-sm-12">
             {{if and .game.Id .event.Id }}
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="{{.game.Cover}}" alt="Cover image of {{.game.Name}}">
